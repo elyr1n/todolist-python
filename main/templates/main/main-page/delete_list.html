@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    <style>
+    body, html {
+        height: 100%;
+    }
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .card {
+        width: 400px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+    </style>
+    <div class="centered-container">
+        <div class="card text-center">
+            <h4 class="mb-4">Удалить цель</h4>
+            <p class="mb-4">Вы действительно хотите удалить цель "<strong>{{ form.name }}</strong>"?</p>
+            <form method="post">
+                {% csrf_token %}
+                <div style="display: flex; justify-content: center; gap: 15px;">
+                    <button type="submit" class="btn btn-danger" style="width: 120px;">Да, удалить</button>
+                    <a href="{% url 'main:home' %}" class="btn btn-secondary" style="width: 120px;">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

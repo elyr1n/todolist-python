@@ -1,0 +1,75 @@
+{% extends "main/base.html" %}
+
+{% block title %}Добавление цели{% endblock title %}
+{% block content %}
+    <style>
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;   
+        background: #f8f9fa;
+    }
+
+    form.custom-form {
+        width: 600px;
+        max-width: 90%;
+        padding: 40px;
+        background: #fff;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        border-radius: 12px;
+    }
+
+    form.custom-form h3 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    form.custom-form .btn {
+        font-size: 1.2rem;
+        padding: 12px 0;
+    }
+
+    form.custom-form .form-control {
+        font-size: 1.1rem;
+        padding: 10px 14px;
+    }
+
+    form.custom-form .input-group-text {
+        font-size: 1.2rem;
+    }
+
+    form.custom-form small {
+        font-size: 0.9rem;
+    }
+    </style>
+    <div class="form-wrapper">
+        <form action="{% url 'main:add_list' %}" method="post" class="custom-form">
+            {% csrf_token %}
+            <h3 class="text-center">Добавить новую цель</h3>
+    
+            <div class="form-group mb-4">
+                {{ form.name.label_tag }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                    {{ form.name }}
+                </div>
+                <small class="form-text text-muted">Введите название (макс. 32 символа)</small>
+            </div>
+
+            <div class="form-group mb-4">
+                {{ form.purpose.label_tag }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-clipboard-list"></i></span>
+                    {{ form.purpose }}
+                </div>
+                <small class="form-text text-muted">Опишите цель (макс. 32 символа)</small>
+            </div>
+    
+            <div style="display: flex; justify-content: center; gap: 15px; width: 100%; margin: 0 auto;">
+                <button type="submit" class="btn btn-primary" style="width: 50%;">Добавить</button>
+                <a href="{% url 'main:home' %}" class="btn btn-danger" style="width: 50%;">Отмена</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

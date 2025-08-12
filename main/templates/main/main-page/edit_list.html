@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+
+{% block title %}Изменение цели{% endblock title %}
+{% block content %}
+
+    <div class="form-wrapper">
+        <form method="post" action="{% url 'main:edit_list' form.instance.pk %}">
+            {% csrf_token %}
+            <h3 class="text-center mb-4">Изменить текущую цель</h3>
+        
+            <div class="form-group mb-4">
+                {{ form.name.label_tag }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                    {{ form.name }}
+                </div>
+            </div>
+        
+            <div class="form-group mb-4">
+                {{ form.purpose.label_tag }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-clipboard-list"></i></span>
+                    {{ form.purpose }}
+                </div>
+            </div>
+        
+            <div style="display: flex; justify-content: center; gap: 15px; width: 100%; margin: 0 auto;">
+                <button type="submit" class="btn btn-primary" style="width: 50%;">Изменить</button>
+                <a href="{% url 'main:home' %}" class="btn btn-danger" style="width: 50%;">Отмена</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
